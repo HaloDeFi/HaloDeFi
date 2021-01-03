@@ -1,0 +1,3 @@
+# MasterBuilder
+
+A master builder is recognized as such, not only for their ability to rear a magnificent structure after plans prepared by the architect for their guidance, but because of their ability to comprehend those plans, and to skillfully weave together the crude materials which make up the strength, the harmony, the beauty, the stateliness of the edifice which grow in their hands from a made foundation to a magnificent habitation.
