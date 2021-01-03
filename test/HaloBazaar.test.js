@@ -44,9 +44,9 @@ contract('HaloBazaar', ([alice, bob, carol]) => {
         assert.equal((await this.bazaar.balanceOf(alice)).valueOf(), '20');
         assert.equal((await this.bazaar.balanceOf(bob)).valueOf(), '10');
         assert.equal((await this.hld.balanceOf(this.bazaar.address)).valueOf(), '30');
-        // HaloBazaar get 20 more SUSHIs from an external source.
+        // HaloBazaar get 20 more HLDs from an external source.
         await this.hld.transfer(this.bazaar.address, '20', { from: carol });
-        // Alice deposits 10 more SUSHIs. She should receive 10*30/50 = 6 shares.
+        // Alice deposits 10 more HLDs. She should receive 10*30/50 = 6 shares.
         await this.bazaar.enter('10', { from: alice });
         assert.equal((await this.bazaar.balanceOf(alice)).valueOf(), '26');
         assert.equal((await this.bazaar.balanceOf(bob)).valueOf(), '10');

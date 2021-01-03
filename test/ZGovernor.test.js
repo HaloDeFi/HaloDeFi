@@ -22,7 +22,7 @@ contract('Governor', ([alice, minter, dev]) => {
         await this.builder.add('100', this.lp.address, true, { from: alice });
         await this.lp.approve(this.builder.address, '1000', { from: minter });
         await this.builder.deposit(0, '100', { from: minter });
-        // Perform another deposit to make sure some SUSHIs are minted in that 1 block.
+        // Perform another deposit to make sure some HLDs are minted in that 1 block.
         await this.builder.deposit(0, '100', { from: minter });
         assert.equal((await this.hld.totalSupply()).valueOf(), '110');
         assert.equal((await this.hld.balanceOf(minter)).valueOf(), '100');

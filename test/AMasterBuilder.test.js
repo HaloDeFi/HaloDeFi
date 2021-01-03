@@ -178,16 +178,16 @@ contract('MasterBuilder', ([alice, bob, carol, dev, minter]) => {
             await time.advanceBlockTo('419');
             await this.builder.add('20', this.lp2.address, true);
             // Alice should have 10*1000 pending reward
-            assert.equal((await this.builder.pendingSushi(0, alice)).valueOf(), '10000');
+            assert.equal((await this.builder.pendingHLD(0, alice)).valueOf(), '10000');
             // Bob deposits 10 LP2s at block 425
             await time.advanceBlockTo('424');
             await this.builder.deposit(1, '5', { from: bob });
             // Alice should have 10000 + 5*1/3*1000 = 11666 pending reward
-            assert.equal((await this.builder.pendingSushi(0, alice)).valueOf(), '11666');
+            assert.equal((await this.builder.pendingHLD(0, alice)).valueOf(), '11666');
             await time.advanceBlockTo('430');
             // At block 430. Bob should get 5*2/3*1000 = 3333. Alice should get ~1666 more.
-            assert.equal((await this.builder.pendingSushi(0, alice)).valueOf(), '13333');
-            assert.equal((await this.builder.pendingSushi(1, bob)).valueOf(), '3333');
+            assert.equal((await this.builder.pendingHLD(0, alice)).valueOf(), '13333');
+            assert.equal((await this.builder.pendingHLD(1, bob)).valueOf(), '3333');
         });
 
         it('should stop giving bonus HLDs after the bonus period ends', async () => {
@@ -201,10 +201,10 @@ contract('MasterBuilder', ([alice, bob, carol, dev, minter]) => {
             await this.builder.deposit(0, '10', { from: alice });
             // At block 605, she should have 1000*10 + 100*5 = 10500 pending.
             await time.advanceBlockTo('605');
-            assert.equal((await this.builder.pendingSushi(0, alice)).valueOf(), '10500');
+            assert.equal((await this.builder.pendingHLD(0, alice)).valueOf(), '10500');
             // At block 606, Alice withdraws all pending rewards and should get 10600.
             await this.builder.deposit(0, '0', { from: alice });
-            assert.equal((await this.builder.pendingSushi(0, alice)).valueOf(), '0');
+            assert.equal((await this.builder.pendingHLD(0, alice)).valueOf(), '0');
             assert.equal((await this.hld.balanceOf(alice)).valueOf(), '10600');
         });
     });

@@ -22,7 +22,7 @@ contract('HaloBazaar', ([alice, bob, carol]) => {
         assert.equal((await this.bazaar.userInfo(bob)).amount.valueOf(), '100');
         assert.equal((await this.bazaar.userInfo(alice)).share.valueOf(), '199');
         assert.equal((await this.bazaar.userInfo(bob)).share.valueOf(), '99');
-        // SushiBar get 200 more HLDs from an external source.
+        // HaloBazaar get 200 more HLDs from an external source.
         await this.hld.transfer(this.bazaar.address, '200', { from: carol });
         // Pending rewards should be correct
         await this.bazaar.cleanup();
@@ -42,7 +42,7 @@ contract('HaloBazaar', ([alice, bob, carol]) => {
         assert.equal((await this.bazaar.userInfo(bob)).share.valueOf(), '99');
         assert.equal((await this.bazaar.getPendingReward(alice)).valueOf(), '0');
         assert.equal((await this.bazaar.getPendingReward(bob)).valueOf(), '66');
-        // SushiBar get 200 more HLDs from an external source.
+        // HaloBazaar get 200 more HLDs from an external source.
         await this.hld.transfer(this.bazaar.address, '200', { from: carol });
         await this.bazaar.cleanup();
         assert.equal((await this.bazaar.getPendingReward(alice)).valueOf(), '159'); // 378/477*200
